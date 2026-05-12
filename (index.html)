@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nels1Radar - Monitor de Ofertas</title>
+    <style>
+        body { font-family: sans-serif; background: #121212; color: #e0e0e0; padding: 15px; }
+        h1 { color: #ff9900; font-size: 1.5rem; }
+        .data { color: #888; font-size: 0.8rem; margin-bottom: 20px; }
+        .card { background: #1e1e1e; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #ff9900; }
+        .ativo { font-weight: bold; font-size: 1.1rem; }
+        .preco { color: #00ff00; font-weight: bold; margin: 5px 0; }
+        .obs { font-size: 0.9rem; color: #bbb; }
+    </style>
+</head>
+<body>
+    <h1>Nels1Radar 🚀</h1>
+    <div class="data" id="data">Carregando néctar...</div>
+    <div id="lista"></div>
+
+    <script>
+        fetch('ofertas.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('data').innerText = "Atualizado em: " + new Date().toLocaleDateString();
+                const container = document.getElementById('lista');
+                data.forEach(item => {
+                    container.innerHTML += `
+                        <div class="card">
+                            <div class="ativo">${item.ativo}</div>
+                            <div class="preco">${item.preco}</div>
+                            <div class="obs">${item.obs}</div>
+                        </div>`;
+                });
+            });
+    </script>
+</body>
+</html>
