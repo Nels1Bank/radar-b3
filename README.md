@@ -1,4 +1,5 @@
-</MaquinadoDigital/>
+<MaquinadoDigital>
+    --neon-blue: #38bdf8;
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -24,7 +25,7 @@
 
         .container { 
             width: 100%;
-            background: rgba(15, 23, 42, 0.6); /* Transparência suave */
+            background: rgba(15, 23, 42, 0.6); 
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 20px; 
@@ -39,11 +40,11 @@
             text-transform: uppercase; letter-spacing: 2px;
         }
 
-        /* --- Tabela/Letreiro Transparente --- */
+        /* --- Letreiro Transparente --- */
         .ticker-wrap {
-            background: rgba(255, 255, 255, 0.03); /* Fundo transparente */
+            background: rgba(255, 255, 255, 0.03); 
             border: 1px solid var(--glass-border);
-            border-radius: 12px; /* Arredondado sem exagero */
+            border-radius: 12px; 
             padding: 12px 0;
             overflow: hidden; 
             margin-bottom: 25px;
@@ -51,7 +52,7 @@
 
         .ticker-move {
             display: inline-block; white-space: nowrap;
-            animation: move-left 25s linear infinite;
+            animation: move-left 30s linear infinite;
         }
 
         .ticker-item {
@@ -88,21 +89,21 @@
     <div class="ticker-wrap">
         <div class="ticker-move">
             <div class="ticker-item"><span>ECOR3</span><small>Logística</small></div>
-            <div class="ticker-item"><span>MTRE3</span><small>Imobiliário</small></div>
-            <div class="ticker-item"><span>AZZAS3</span><small>Varejo</small></div>
-            <div class="ticker-item"><span>AURE3</span><small>Energia</small></div>
+            <div class="ticker-item"><span>AZZAS3</span><small>Varejo Luxo</small></div>
+            <div class="ticker-item"><span>GUAR3</span><small>Varejo</small></div>
+            <div class="ticker-item"><span>LREN3</span><small>Varejo</small></div>
             <div class="ticker-item"><span>BBAS3</span><small>Bancário</small></div>
-            <div class="ticker-item"><span>PETR4</span><small>Energia</small></div>
+            <div class="ticker-item"><span>SBSP3</span><small>Saneamento</small></div>
             <div class="ticker-item"><span>BTC</span><small>Ativo Digital</small></div>
             <div class="ticker-item"><span>ETH</span><small>Ativo Digital</small></div>
             <div class="ticker-item"><span>SOL</span><small>Ativo Digital</small></div>
-            <!-- Loop Infinito -->
+            <!-- Loop -->
             <div class="ticker-item"><span>ECOR3</span><small>Logística</small></div>
-            <div class="ticker-item"><span>MTRE3</span><small>Imobiliário</small></div>
-            <div class="ticker-item"><span>AZZAS3</span><small>Varejo</small></div>
-            <div class="ticker-item"><span>AURE3</span><small>Energia</small></div>
+            <div class="ticker-item"><span>AZZAS3</span><small>Varejo Luxo</small></div>
+            <div class="ticker-item"><span>GUAR3</span><small>Varejo</small></div>
+            <div class="ticker-item"><span>LREN3</span><small>Varejo</small></div>
             <div class="ticker-item"><span>BBAS3</span><small>Bancário</small></div>
-            <div class="ticker-item"><span>PETR4</span><small>Energia</small></div>
+            <div class="ticker-item"><span>SBSP3</span><small>Saneamento</small></div>
             <div class="ticker-item"><span>BTC</span><small>Ativo Digital</small></div>
             <div class="ticker-item"><span>ETH</span><small>Ativo Digital</small></div>
             <div class="ticker-item"><span>SOL</span><small>Ativo Digital</small></div>
@@ -125,7 +126,7 @@
     </div>
 
     <footer>
-        Monitoramento técnico de ativos B3 e Digitais.
+        Nels1Radar: Foco em Ativos Reais e Valor.
     </footer>
 </div>
 
