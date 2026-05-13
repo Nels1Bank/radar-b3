@@ -3,145 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nels1Radar | Terminal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <title>Nels1Radar | OS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #030712;
-            --primary: #0ea5e9;
-            --secondary: #22c55e;
-            --glass: rgba(15, 23, 42, 0.7);
-            --neon-glow: 0 0 15px rgba(14, 165, 233, 0.4);
+            --bg: #050505;
+            --primary: #00e5ff;
+            --up: #00ff41; /* Verde Alta */
+            --down: #ff0055; /* Vermelho Baixa */
+            --glass: rgba(20, 20, 20, 0.85);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body { 
-            font-family: 'Rajdhani', sans-serif; 
-            background: radial-gradient(circle at top, #1e1b4b 0%, #030712 100%);
-            background-attachment: fixed;
-            color: #e2e8f0; 
-            margin: 0; padding: 15px;
-            min-height: 100vh;
+            font-family: 'JetBrains Mono', monospace; 
+            background: var(--bg);
+            color: #d1d5db; 
+            margin: 0; padding: 12px;
+            overflow-x: hidden;
             display: flex; justify-content: center;
         }
 
-        .container { 
-            width: 100%; max-width: 500px;
+        .terminal-container { 
+            width: 100%; max-width: 480px;
             background: var(--glass);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px; padding: 25px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            border: 1px solid #333;
+            border-radius: 12px; padding: 15px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
-
-        header { text-align: center; margin-bottom: 30px; }
 
         h1 { 
             font-family: 'Orbitron', sans-serif;
-            color: var(--primary); font-size: 1.3rem;
-            text-transform: uppercase; letter-spacing: 3px;
-            margin: 0; text-shadow: var(--neon-glow);
+            color: var(--primary); font-size: 1rem;
+            text-align: center; letter-spacing: 4px;
+            margin: 10px 0; text-shadow: 0 0 8px var(--primary);
         }
 
-        .status-indicator {
-            font-size: 0.6rem; color: var(--secondary);
-            text-transform: uppercase; margin-top: 5px;
-            display: flex; align-items: center; justify-content: center; gap: 5px;
+        .ticker-stream {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #333;
+            border-radius: 6px; padding: 12px 0;
+            margin: 15px 0; overflow: hidden;
         }
 
-        .status-dot { 
-            width: 6px; height: 6px; background: var(--secondary); 
-            border-radius: 50%; animation: blink 1.5s infinite;
-        }
-
-        /* Ticker Futurista */
-        .ticker-panel {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px; padding: 15px 0;
-            margin-bottom: 25px; overflow: hidden;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-        }
-
-        .ticker-track {
+        .track {
             display: inline-block; white-space: nowrap;
-            animation: ticker-scroll 25s linear infinite;
+            animation: scroll 25s linear infinite;
         }
 
-        .ticker-item {
-            display: inline-block; padding: 0 30px;
-            font-weight: 700; font-size: 1rem;
+        .asset {
+            display: inline-block; padding: 0 25px;
+            border-right: 1px solid #222;
+            text-align: left;
         }
 
-        .ticker-item span { color: var(--secondary); font-family: 'Orbitron', sans-serif; }
-        .ticker-item small { 
-            color: #64748b; font-size: 0.7rem; 
-            display: block; text-transform: uppercase; margin-top: 2px;
-        }
+        .asset b { color: #fff; font-size: 0.9rem; }
+        .up-arrow { color: var(--up); font-size: 0.9rem; margin-left: 5px; }
+        .down-arrow { color: var(--down); font-size: 0.9rem; margin-left: 5px; }
+        .asset span { font-size: 0.65rem; color: #888; display: block; text-transform: uppercase; margin-top: 2px; }
 
-        @keyframes ticker-scroll {
+        @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+        .market-engine {
+            border-radius: 8px; overflow: hidden;
+            border: 1px solid #222; height: 500px;
         }
 
-        /* Widget Área */
-        .market-view {
-            border-radius: 18px; overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            height: 520px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
+        footer { margin-top: 20px; text-align: center; border-top: 1px dotted #444; padding-top: 10px; }
 
-        footer {
-            margin-top: 25px; text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 15px;
-        }
-
-        .disclaimer {
-            color: var(--secondary); font-size: 8px;
-            opacity: 0.8; letter-spacing: 0.5px;
-            line-height: 1.4;
+        .legal {
+            color: var(--up); font-size: 8px;
+            text-transform: uppercase; opacity: 0.7;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>Nels1Radar</h1>
-        <div class="status-indicator">
-            <div class="status-dot"></div> Sistema Operacional v3.0
-        </div>
-    </header>
+<div class="terminal-container">
+    <h1>NELS1-RADAR v4.5</h1>
     
-    <div class="ticker-panel">
-        <div class="ticker-track">
-            <div class="ticker-item"><span>ECOR3</span><small>Logística</small></div>
-            <div class="ticker-item"><span>AZZAS3</span><small>Varejo Luxo</small></div>
-            <div class="ticker-item"><span>SBSP3</span><small>Saneamento</small></div>
-            <div class="ticker-item"><span>BTC</span><small>Ativo Digital</small></div>
-            <div class="ticker-item"><span>ETH</span><small>Ativo Digital</small></div>
-            <div class="ticker-item"><span>SOL</span><small>Ativo Digital</small></div>
-            <div class="ticker-item"><span>BBAS3</span><small>Banking</small></div>
-            <div class="ticker-item"><span>GUAR3</span><small>Varejo</small></div>
-            <!-- Loop -->
-            <div class="ticker-item"><span>ECOR3</span><small>Logística</small></div>
-            <div class="ticker-item"><span>AZZAS3</span><small>Varejo Luxo</small></div>
-            <div class="ticker-item"><span>SBSP3</span><small>Saneamento</small></div>
-            <div class="ticker-item"><span>BTC</span><small>Ativo Digital</small></div>
-            <div class="ticker-item"><span>ETH</span><small>Ativo Digital</small></div>
-            <div class="ticker-item"><span>SOL</span><small>Ativo Digital</small></div>
-            <div class="ticker-item"><span>BBAS3</span><small>Banking</small></div>
-            <div class="ticker-item"><span>GUAR3</span><small>Varejo</small></div>
+    <div class="ticker-stream">
+        <div class="track">
+            <!-- Ativos com sinalizadores de direção baseados no contexto de mercado recente -->
+            <div class="asset"><b>AZZAS3</b><span class="down-arrow">▼</span><span>Retail High</span></div>
+            <div class="asset"><b>SBSP3</b><span class="up-arrow">▲</span><span>Motosserra</span></div>
+            <div class="asset"><b>GUAR3</b><span class="up-arrow">▲</span><span>Retail</span></div>
+            <div class="asset"><b>LREN3</b><span class="down-arrow">▼</span><span>Retail</span></div>
+            <div class="asset"><b>ECOR3</b><span class="up-arrow">▲</span><span>Logistics</span></div>
+            <div class="asset"><b>BBAS3</b><span class="up-arrow">▲</span><span>Banking</span></div>
+            <div class="asset"><b>BTC</b><span class="up-arrow">▲</span><span>Digital Asset</span></div>
+            <div class="asset"><b>ETH</b><span class="up-arrow">▲</span><span>Digital Asset</span></div>
+            <!-- Loop para animação contínua -->
+            <div class="asset"><b>AZZAS3</b><span class="down-arrow">▼</span><span>Retail High</span></div>
+            <div class="asset"><b>SBSP3</b><span class="up-arrow">▲</span><span>Motosserra</span></div>
+            <div class="asset"><b>GUAR3</b><span class="up-arrow">▲</span><span>Retail</span></div>
+            <div class="asset"><b>LREN3</b><span class="down-arrow">▼</span><span>Retail</span></div>
+            <div class="asset"><b>ECOR3</b><span class="up-arrow">▲</span><span>Logistics</span></div>
+            <div class="asset"><b>BBAS3</b><span class="up-arrow">▲</span><span>Banking</span></div>
+            <div class="asset"><b>BTC</b><span class="up-arrow">▲</span><span>Digital Asset</span></div>
+            <div class="asset"><b>ETH</b><span class="up-arrow">▲</span><span>Digital Asset</span></div>
         </div>
     </div>
 
-    <div class="market-view">
+    <div class="market-engine">
+        <!-- Widget Screener da B3 para acompanhamento em tempo real -->
         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
         {
           "width": "100%",
@@ -157,7 +127,7 @@
     </div>
 
     <footer>
-        <p class="disclaimer">Atenção: Este ambiente é estritamente para monitoramento técnico de ativos de mercado. Nenhuma informação aqui contida constitui indicação de compra ou venda.</p>
+        <p class="legal">Atenção: Sistema de monitoramento técnico. Informações não constituem indicação de compra ou venda.</p>
     </footer>
 </div>
 
