@@ -2,62 +2,136 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nels1Radar v6.0 | Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Nels1Radar | Dashboard Profissional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #020617;
+            --bg: #000000;
+            --surface: #0f172a;
             --primary: #00e5ff;
             --crypto: #f59e0b;
             --up: #10b981;
             --down: #ef4444;
-            --glass: rgba(15, 23, 42, 0.95);
+            --text-dim: #94a3b8;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'JetBrains Mono', monospace; background: var(--bg); color: #f8fafc; margin: 0; padding: 10px; }
-
-        .terminal { width: 100%; max-width: 480px; margin: auto; background: var(--glass); border: 1px solid #1e293b; border-radius: 16px; padding: 12px; }
         
-        h1 { font-family: 'Orbitron', sans-serif; color: var(--primary); font-size: 1rem; text-align: center; letter-spacing: 2px; margin: 10px 0; }
+        body { 
+            font-family: 'JetBrains Mono', monospace; 
+            background: var(--bg); 
+            color: #f8fafc; 
+            margin: 0; 
+            padding: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
 
-        /* Sistema de Navegação (Paginação por Abas) */
-        .nav-tabs { display: flex; gap: 5px; margin-bottom: 15px; background: #000; padding: 5px; border-radius: 10px; border: 1px solid #1e293b; }
-        .tab-btn { flex: 1; padding: 10px; border: none; background: transparent; color: #64748b; font-family: 'Orbitron', sans-serif; font-size: 0.65rem; cursor: pointer; border-radius: 6px; transition: 0.3s; }
-        .tab-btn.active { background: var(--primary); color: #000; font-weight: bold; }
-        .tab-btn.crypto-tab.active { background: var(--crypto); }
+        /* Header e Ticker Fixo */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 10px 0;
+            border-bottom: 1px solid #1e293b;
+            z-index: 100;
+        }
 
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
+        h1 { 
+            font-family: 'Orbitron', sans-serif; 
+            color: var(--primary); 
+            font-size: 0.9rem; 
+            text-align: center; 
+            margin: 5px 0;
+            letter-spacing: 3px;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .ticker-stream { 
+            background: #000; 
+            overflow: hidden; 
+            white-space: nowrap; 
+            padding: 8px 0;
+            border-bottom: 1px solid #1e293b;
+        }
 
-        /* Ticker e Widgets */
-        .ticker-stream { background: #000; border: 1px solid #1e293b; border-radius: 8px; padding: 10px 0; overflow: hidden; margin-bottom: 15px; }
-        .track { display: inline-block; white-space: nowrap; animation: scroll 25s linear infinite; }
-        .asset { display: inline-block; padding: 0 15px; border-right: 1px solid #1e293b; font-size: 0.75rem; }
+        .track { display: inline-block; animation: scroll 20s linear infinite; }
+        .asset { padding: 0 20px; font-size: 0.75rem; border-right: 1px solid #1e293b; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        .widget-box { border-radius: 12px; overflow: hidden; border: 1px solid #1e293b; background: #000; }
-        .crypto-border { border: 2px solid var(--crypto); box-shadow: 0 0 15px rgba(245, 158, 11, 0.1); }
+        /* Área de Conteúdo */
+        main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            padding-bottom: 80px; /* Espaço para a Nav inferior */
+        }
 
-        /* Grade Institucional */
-        .inst-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--crypto); border-top: 1px solid var(--crypto); }
-        .inst-card { padding: 10px; background: #000; }
-        .inst-card h3 { font-size: 0.5rem; color: #64748b; margin: 0; }
-        .inst-card p { font-size: 0.7rem; color: #fff; margin: 4px 0; font-weight: bold; }
-        .inst-card span { font-size: 0.55rem; color: var(--up); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: slideUp 0.3s ease-out; }
 
-        footer { margin-top: 20px; text-align: center; font-size: 8px; color: var(--up); opacity: 0.6; text-transform: uppercase; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Widgets Customizados */
+        .card { 
+            background: var(--surface); 
+            border-radius: 12px; 
+            border: 1px solid #1e293b; 
+            overflow: hidden; 
+            margin-bottom: 20px;
+        }
+
+        .crypto-accent { border: 2px solid var(--crypto); }
+
+        /* Grade Institucional Refinada */
+        .inst-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 1px; 
+            background: #1e293b;
+        }
+        .inst-item { background: #000; padding: 12px; }
+        .inst-item label { font-size: 0.55rem; color: var(--text-dim); display: block; margin-bottom: 4px; }
+        .inst-item value { font-size: 0.8rem; font-weight: bold; display: block; }
+        .inst-item status { font-size: 0.6rem; color: var(--up); }
+
+        /* Navegação Inferior (App Style) */
+        nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            border-top: 1px solid #1e293b;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .nav-btn.active { color: var(--primary); }
+        .nav-btn.crypto-btn.active { color: var(--crypto); }
+        .nav-btn .icon { width: 20px; height: 2px; background: currentColor; border-radius: 2px; }
+
     </style>
 </head>
 <body>
 
-<div class="terminal">
-    <h1>NELS1-RADAR v6.0</h1>
-
-    <!-- Letreiro Global -->
+<header>
+    <h1>NELS1-RADAR v6.1</h1>
     <div class="ticker-stream">
         <div class="track">
             <span class="asset"><b>BTC</b> <span style="color:var(--up)">▲</span></span>
@@ -71,16 +145,12 @@
             <span class="asset"><b>SOL</b> <span style="color:var(--up)">▲</span></span>
         </div>
     </div>
+</header>
 
-    <!-- Navegação por Abas -->
-    <div class="nav-tabs">
-        <button class="tab-btn active" onclick="openTab(event, 'b3-panel')">B3 STOCKS</button>
-        <button class="tab-btn crypto-tab" onclick="openTab(event, 'crypto-panel')">CRYPTO / INST</button>
-    </div>
-
-    <!-- Painel B3 -->
-    <div id="b3-panel" class="tab-content active">
-        <div class="widget-box" style="height: 400px;">
+<main>
+    <!-- Aba B3 -->
+    <div id="b3" class="tab-content active">
+        <div class="card" style="height: 500px;">
             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
             {
               "width": "100%", "height": "100%", "defaultColumn": "overview",
@@ -91,33 +161,62 @@
         </div>
     </div>
 
-    <!-- Painel Crypto -->
-    <div id="crypto-panel" class="tab-content">
-        <div class="crypto-border" style="border-radius: 12px; overflow: hidden;">
-            <div style="height: 300px;">
-                <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=5&pref_coin_id=1505" width="100%" height="300px" frameborder="0" style="border:0;"></iframe>
+    <!-- Aba Crypto -->
+    <div id="crypto" class="tab-content">
+        <div class="card crypto-accent">
+            <div style="height: 350px;">
+                <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=6&pref_coin_id=1505" width="100%" height="350px" frameborder="0" style="border:0;"></iframe>
             </div>
             <div class="inst-grid">
-                <div class="inst-card"><h3>🇺🇸 MSTR</h3><p>214k BTC</p><span>SAYLOR</span></div>
-                <div class="inst-card"><h3>🇯🇵 METAPLANET</h3><p>117 BTC</p><span>ASIA</span></div>
-                <div class="inst-card"><h3>🇧🇷 HASH11</h3><p>ETF LEADER</p><span>B3</span></div>
-                <div class="inst-card"><h3>🇨🇳 HARVEST</h3><p>HK SPOT</p><span>CHINA</span></div>
+                <div class="inst-item">
+                    <label>🇺🇸 MICROSTRATEGY</label>
+                    <value>214,400 BTC</value>
+                    <status>STRATEGIC RESERVE</status>
+                </div>
+                <div class="inst-item">
+                    <label>🇯🇵 METAPLANET</label>
+                    <value>117.7 BTC</value>
+                    <status>YEN HEDGE</status>
+                </div>
+                <div class="inst-item">
+                    <label>🇧🇷 HASH11 (B3)</label>
+                    <value>ETF LEADER</value>
+                    <status>LOCAL ACCESS</status>
+                </div>
+                <div class="inst-item">
+                    <label>🇨🇳 HARVEST (HK)</label>
+                    <value>SPOT ETF</value>
+                    <status>CHINA PROXY</status>
+                </div>
             </div>
         </div>
     </div>
+</main>
 
-    <footer>Monitoramento Técnico | Nels1Bank Protocol</footer>
-</div>
+<nav>
+    <button class="nav-btn active" onclick="switchTab(event, 'b3')">
+        <div class="icon"></div>
+        B3 STOCKS
+    </button>
+    <button class="nav-btn crypto-btn" onclick="switchTab(event, 'crypto')">
+        <div class="icon"></div>
+        CRYPTO INST
+    </button>
+</nav>
 
 <script>
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) { tabcontent[i].className = tabcontent[i].className.replace(" active", ""); }
-        tablinks = document.getElementsByClassName("tab-btn");
-        for (i = 0; i < tablinks.length; i++) { tablinks[i].className = tablinks[i].className.replace(" active", ""); }
-        document.getElementById(tabName).className += " active";
-        evt.currentTarget.className += " active";
+    function switchTab(evt, tabId) {
+        const contents = document.querySelectorAll('.tab-content');
+        const buttons = document.querySelectorAll('.nav-btn');
+        
+        contents.forEach(c => c.classList.remove('active'));
+        buttons.forEach(b => b.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        evt.currentTarget.classList.add('active');
+        
+        // Haptic Feedback simulado (opcional para mobile)
+        if (window.navigator.vibrate) { window.navigator.vibrate(10); }
     }
 </script>
 
