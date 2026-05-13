@@ -9,7 +9,7 @@
         :root {
             --bg: #020617;
             --primary: #00e5ff;
-            --crypto-alt: #f59e0b; /* Laranja BTC */
+            --crypto-accent: #f59e0b; /* Laranja Bitcoin */
             --up: #10b981;
             --down: #ef4444;
             --glass: rgba(15, 23, 42, 0.9);
@@ -26,7 +26,7 @@
         .terminal { 
             width: 100%; max-width: 480px; background: var(--glass);
             border: 1px solid #1e293b; border-radius: 16px; padding: 15px;
-            box-shadow: 0 0 40px rgba(0, 229, 255, 0.1);
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.05);
         }
 
         h1 { 
@@ -41,6 +41,7 @@
             margin: 15px 0 5px 5px; border-left: 2px solid var(--primary); padding-left: 8px;
         }
 
+        /* Ticker Principal */
         .ticker-stream {
             background: #000; border: 1px solid #1e293b;
             border-radius: 8px; padding: 12px 0; overflow: hidden; margin-bottom: 15px;
@@ -54,10 +55,17 @@
 
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
+        /* Estilo dos Widgets */
         .widget-box {
             border-radius: 12px; overflow: hidden;
             border: 1px solid #1e293b; background: #000;
             margin-bottom: 15px;
+        }
+
+        /* DESTAQUE LARANJA PARA CRIPTO */
+        .crypto-border {
+            border: 2px solid var(--crypto-accent);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
         }
 
         footer { margin-top: 25px; text-align: center; border-top: 1px solid #1e293b; padding-top: 15px; }
@@ -67,7 +75,7 @@
 <body>
 
 <div class="terminal">
-    <h1>NELS1-RADAR v5.5</h1>
+    <h1>NELS1-RADAR v5.6</h1>
     
     <div class="section-tag">Monitoramento Estratégico</div>
     <div class="ticker-stream">
@@ -99,8 +107,8 @@
         </script>
     </div>
 
-    <div class="section-tag">Crypto Market Feed</div>
-    <div class="widget-box" style="height: 350px;">
+    <div class="section-tag" style="color: var(--crypto-accent);">Crypto Market Feed</div>
+    <div class="widget-box crypto-border" style="height: 350px;">
         <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=6&pref_coin_id=1505" width="100%" height="350px" frameborder="0" style="border:0;margin:0;padding:0;"></iframe>
     </div>
 
