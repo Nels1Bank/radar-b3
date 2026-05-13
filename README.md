@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Nels1Bank - Monitor de Mercado</title>
+    <title>Nels1Radar - Monitor de Mercado</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #0d1117; color: #c9d1d9; padding: 20px; }
         .container { max-width: 1000px; margin: auto; border: 1px solid #30363d; border-radius: 8px; padding: 25px; background-color: #161b22; }
@@ -15,9 +15,9 @@
 <body>
 
 <div class="container">
-    <h1>Painel de Ativos Financeiros</h1>
+    <h1>📈 Nels1Radar: Painel de Monitoramento</h1>
     
-    <!-- Lista Expandida de Ativos -->
+    <!-- Lista de Ativos Estratégicos -->
     <div class="asset-grid">
         <div class="asset-card"><span class="ticker">ECOR3</span><br><small>Logística</small></div>
         <div class="asset-card"><span class="ticker">MTRE3</span><br><small>Imobiliário</small></div>
@@ -29,7 +29,7 @@
         <div class="asset-card"><span class="ticker">BTC</span><br><small>Digital Asset</small></div>
     </div>
 
-    <!-- Widget de Variações de Mercado (Automático) -->
+    <!-- Monitor de Variações (Puxando a tomada da B3 automaticamente) -->
     <div class="tradingview-widget-container">
         <div class="tradingview-widget-container__widget"></div>
         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
