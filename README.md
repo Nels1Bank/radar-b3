@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+</>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -16,37 +16,37 @@
 <body>
 
 <div class="container">
-    <h1>📈 Nels1Bank: Monitoramento de Ativos</h1>
+    <h1>📈 Nels1Bank: Painel de Monitoramento</h1>
     
     <div class="status-bar">
-        Acompanhamento de Fluxo e Ativos de Infraestrutura / Valor
+        Acompanhamento de Ativos de Infraestrutura e Mercado Financeiro
     </div>
 
-    <!-- Lista de 5 Ativos do Radar -->
+    <!-- Lista dos 5 Ativos Estratégicos -->
     <div class="asset-grid">
         <div class="asset-card">
             <span class="ticker">ECOR3</span><br>
-            <small>Concessões</small>
+            <small>Logística</small>
         </div>
         <div class="asset-card">
             <span class="ticker">MTRE3</span><br>
-            <small>Imobiliário</small>
+            <small>Setor Imobiliário</small>
         </div>
         <div class="asset-card">
             <span class="ticker">AZZAS3</span><br>
-            <small>Varejo Luxo</small>
+            <small>Consumo e Varejo</small>
         </div>
         <div class="asset-card">
             <span class="ticker">AURE3</span><br>
-            <small>Energia</small>
+            <small>Energia Renovável</small>
         </div>
         <div class="asset-card">
             <span class="ticker">BBAS3</span><br>
-            <small>Bancário</small>
+            <small>Setor Bancário</small>
         </div>
     </div>
 
-    <!-- Widget Automático de Quedas (Sem viés de recomendação) -->
+    <!-- Widget de Maiores Variações Negativas do Dia (Automático) -->
     <div class="tradingview-widget-container">
         <div class="tradingview-widget-container__widget"></div>
         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
@@ -64,9 +64,9 @@
         </script>
     </div>
 
-    <p style="font-size: 0.8em; color: #8b949e; margin-top: 20px; text-align: center;">
-        <em>Nota: Este painel destina-se apenas ao acompanhamento de métricas de mercado. Não constitui oferta ou recomendação de compra/venda.</em>
-    </p>
+    <footer style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #30363d; font-size: 0.8em; color: #8b949e; text-align: center;">
+        <p><strong>Aviso Legal:</strong> Este painel é uma ferramenta de visualização de dados públicos de mercado. Não reflete sugestões de investimento. Decisões financeiras devem ser tomadas com base em análises técnicas e fundamentadas.</p>
+    </footer>
 </div>
 
 </body>
