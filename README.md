@@ -1,5 +1,4 @@
-<MaquinadoDigital>
-    --neon-blue: #38bdf8;
+</Nels1Radar/>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -40,7 +39,6 @@
             text-transform: uppercase; letter-spacing: 2px;
         }
 
-        /* --- Letreiro Transparente --- */
         .ticker-wrap {
             background: rgba(255, 255, 255, 0.03); 
             border: 1px solid var(--glass-border);
@@ -76,8 +74,13 @@
 
         footer {
             margin-top: 25px; text-align: center;
-            font-size: 0.7rem; color: #64748b;
             padding-top: 15px; border-top: 1px solid var(--glass-border);
+        }
+
+        .disclaimer {
+            color: var(--neon-green);
+            font-size: 8px;
+            font-weight: 400;
         }
     </style>
 </head>
@@ -126,7 +129,7 @@
     </div>
 
     <footer>
-        Nels1Radar: Foco em Ativos Reais e Valor.
+        <p class="disclaimer">Atenção: Este ambiente é estritamente para monitoramento técnico de ativos de mercado. Nenhuma informação aqui contida constitui indicação de compra ou venda.</p>
     </footer>
 </div>
 
