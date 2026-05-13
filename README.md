@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Nels1Radar v10.0 | Institutional Power</title>
+    <title>Nels1Radar v11.0 | Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -24,73 +24,71 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Trava o scroll no mobile */
+            overflow: hidden;
         }
 
-        /* Header e Ticker */
-        header { flex-shrink: 0; border-bottom: 1px solid var(--border); background: #000; padding: 8px 0; }
-        h1 { font-family: 'Orbitron', sans-serif; font-size: 0.8rem; text-align: center; color: var(--primary); letter-spacing: 1px; }
+        /* Header Dinâmico */
+        header { flex-shrink: 0; border-bottom: 1px solid var(--border); padding: 6px 0; }
+        h1 { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; text-align: center; color: var(--primary); }
 
-        .ticker { overflow: hidden; white-space: nowrap; background: #000; padding: 5px 0; font-size: 0.65rem; border-top: 1px solid #111; }
+        .ticker { overflow: hidden; white-space: nowrap; background: #000; padding: 4px 0; font-size: 0.6rem; border-top: 1px solid #111; }
         .track { display: inline-block; animation: scroll 15s linear infinite; }
-        .asset { padding: 0 15px; border-right: 1px solid var(--border); }
+        .asset { padding: 0 12px; border-right: 1px solid var(--border); }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        /* Main Content */
+        /* Area de Visualização */
         main { flex-grow: 1; position: relative; overflow: hidden; width: 100%; }
         .tab-content { 
             display: none; height: 100%; width: 100%; 
-            padding: 10px; flex-direction: column; gap: 8px;
+            padding: 8px; flex-direction: column; gap: 6px;
         }
         .tab-content.active { display: flex; }
 
         .card { 
             flex: 1; background: var(--surface); 
             border: 1px solid var(--border); 
-            border-radius: 8px; overflow: hidden; 
+            border-radius: 6px; overflow: hidden; 
         }
 
-        /* Grade Institucional Otimizada para Dedos e Telas Pequenas */
+        /* Painel Institucional (BitcoinTreasuries Data) */
         .inst-panel {
             display: grid; grid-template-columns: 1fr 1fr;
-            gap: 6px; margin-top: 5px; flex-shrink: 0;
+            gap: 5px; flex-shrink: 0;
         }
         .inst-box {
             background: #161b22; border: 1px solid var(--border);
-            padding: 12px; border-radius: 8px; border-left: 4px solid var(--crypto);
+            padding: 10px; border-radius: 6px; border-left: 3px solid var(--crypto);
         }
-        .inst-box label { font-size: 0.5rem; color: #8b949e; display: block; margin-bottom: 4px; }
-        .inst-box span { font-size: 0.8rem; font-weight: bold; color: #fff; display: block; }
-        .inst-box small { font-size: 0.55rem; color: var(--up); font-weight: bold; }
+        .inst-box label { font-size: 0.5rem; color: #8b949e; display: block; margin-bottom: 2px; }
+        .inst-box span { font-size: 0.7rem; font-weight: bold; color: #fff; display: block; }
+        .inst-box small { font-size: 0.5rem; color: var(--up); font-weight: bold; }
 
-        /* Navegação Inferior (Bottom Nav) */
+        /* Navegação Fixa na Base */
         nav {
-            display: flex; height: 65px; background: #010409;
-            border-top: 1px solid var(--border);
-            padding-bottom: env(safe-area-inset-bottom);
+            display: flex; height: 60px; background: #010409;
+            border-top: 1px solid var(--border); padding-bottom: env(safe-area-inset-bottom);
         }
         .nav-item {
             flex: 1; border: none; background: none; color: #484f58;
-            font-family: 'Orbitron', sans-serif; font-size: 0.65rem;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+            font-family: 'Orbitron', sans-serif; font-size: 0.6rem;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
         }
         .nav-item.active { color: var(--primary); background: #0d1117; }
         .nav-item.crypto-active.active { color: var(--crypto); }
-        .indicator { width: 20px; height: 3px; background: currentColor; border-radius: 2px; }
+        .indicator { width: 15px; height: 2px; background: currentColor; border-radius: 1px; }
 
     </style>
 </head>
 <body>
 
 <header>
-    <h1>NELS1-RADAR v10.0</h1>
+    <h1>NELS1-RADAR v11.0</h1>
     <div class="ticker">
         <div class="track">
             <span class="asset">BTC/USD $80,340 ▲</span>
             <span class="asset">BBAS3 R$ 26.45 ▼</span>
             <span class="asset">SBSP3 R$ 82.10 ▲</span>
             <span class="asset">SOL/USD $174.50 ▲</span>
-            <!-- Loop -->
             <span class="asset">BTC/USD $80,340 ▲</span>
             <span class="asset">BBAS3 R$ 26.45 ▼</span>
             <span class="asset">SBSP3 R$ 82.10 ▲</span>
@@ -100,16 +98,14 @@
 </header>
 
 <main>
-    <!-- ABA B3 -->
     <div id="b3" class="tab-content active">
         <div class="card">
             <iframe src="https://br.tradingview.com/widgetembed/?symbol=BMFBOVESPA%3AIBOV&interval=D&theme=dark" width="100%" height="100%" frameborder="0"></iframe>
         </div>
     </div>
 
-    <!-- ABA BTC INSTITUCIONAL -->
     <div id="crypto" class="tab-content">
-        <div class="card" style="border-color: var(--crypto); flex: 0.8;">
+        <div class="card" style="border-color: var(--crypto); flex: 0.7;">
             <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=5&pref_coin_id=1505" width="100%" height="100%" frameborder="0"></iframe>
         </div>
         
@@ -117,22 +113,22 @@
             <div class="inst-box">
                 <label>🇺🇸 STRATEGY INC (MSTR)</label>
                 <span>818,869 BTC</span>
-                <small>+9.4% BTC YIELD</small>
+                <small>+9.4% YIELD</small>
             </div>
             <div class="inst-box">
-                <label>🇯🇵 METAPLANET (3350)</label>
+                <label>🇯🇵 METAPLANET</label>
                 <span>40,177 BTC</span>
-                <small>JAPAN LEADER</small>
+                <small>ASIA LEADER</small>
             </div>
             <div class="inst-box" style="border-left-color: #2196f3;">
                 <label>🌐 21 CAPITAL</label>
                 <span>43,514 BTC</span>
-                <small>PUBLIC FLOW</small>
+                <small>ETF FLOW</small>
             </div>
             <div class="inst-box" style="border-left-color: #fff;">
                 <label>⛏️ MARA HOLDINGS</label>
                 <span>35,303 BTC</span>
-                <small>MINING GIANT</small>
+                <small>HODL MINER</small>
             </div>
         </div>
     </div>
@@ -153,7 +149,7 @@
         document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
         document.getElementById(id).classList.add('active');
         e.currentTarget.classList.add('active');
-        if (window.navigator.vibrate) window.navigator.vibrate(15);
+        if (window.navigator.vibrate) window.navigator.vibrate(10);
     }
 </script>
 
