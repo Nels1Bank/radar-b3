@@ -3,85 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Nels1Radar v12.0</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>Nels1Radar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #000; --surf: #0d1117; --prim: #00e5ff; --crypt: #f59e0b;
-            --up: #10b981; --bord: #30363d;
+            --bg: #050505;
+            --surface: #111111;
+            --primary: #00e5ff;
+            --crypto-alt: #f59e0b;
+            --text: #ffffff;
+            --text-dim: #a0a0a0;
+            --border: #222222;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body, html { 
-            height: 100%; width: 100%; overflow: hidden; 
-            background: var(--bg); color: #c9d1d9; font-family: 'JetBrains Mono', monospace;
-            display: flex; flex-direction: column;
-        }
-        header { flex-shrink: 0; border-bottom: 1px solid var(--bord); padding: 5px 0; text-align: center; }
-        h1 { font-family: 'Orbitron'; font-size: 0.7rem; color: var(--prim); letter-spacing: 1px; }
-        .ticker { overflow: hidden; white-space: nowrap; font-size: 0.6rem; padding: 3px 0; background: #000; }
-        .track { display: inline-block; animation: scroll 20s linear infinite; }
-        .asset { padding: 0 10px; border-right: 1px solid var(--bord); }
-        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        
-        main { flex-grow: 1; position: relative; }
-        .tab { display: none; height: 100%; width: 100%; padding: 5px; flex-direction: column; gap: 5px; }
-        .tab.active { display: flex; }
-        .card { flex: 1; background: var(--surf); border: 1px solid var(--bord); border-radius: 5px; overflow: hidden; }
-        
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; flex-shrink: 0; }
-        .box { background: #161b22; border: 1px solid var(--bord); padding: 8px; border-radius: 5px; border-left: 3px solid var(--crypt); }
-        .box label { font-size: 0.45rem; color: #8b949e; display: block; }
-        .box b { font-size: 0.7rem; color: #fff; display: block; margin: 2px 0; }
-        .box span { font-size: 0.45rem; color: var(--up); font-weight: bold; }
 
-        nav { flex-shrink: 0; height: 55px; display: flex; background: #010409; border-top: 1px solid var(--bord); padding-bottom: env(safe-area-inset-bottom); }
-        .btn { flex: 1; border: none; background: none; color: #484f58; font-family: 'Orbitron'; font-size: 0.6rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
-        .btn.active { color: var(--prim); }
-        .btn.cry.active { color: var(--crypt); }
-        .ind { width: 12px; height: 2px; background: currentColor; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Título e Letreiro */
+        header { flex-shrink: 0; border-bottom: 1px solid var(--border); padding: 12px 0; background: var(--bg); }
+        h1 { font-family: 'Orbitron', sans-serif; font-size: 1rem; text-align: center; color: var(--primary); letter-spacing: 2px; }
+
+        .ticker { background: #000; padding: 8px 0; overflow: hidden; white-space: nowrap; border-bottom: 1px solid var(--border); }
+        .track { display: inline-block; animation: scroll 25s linear infinite; font-size: 0.8rem; font-weight: bold; }
+        .asset { padding: 0 20px; border-right: 1px solid var(--border); }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* Conteúdo Principal */
+        main { flex-grow: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 15px; }
+
+        .section-title { font-family: 'Orbitron'; font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px; }
+        
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; flex-shrink: 0; }
+
+        /* Grid de Preços Legível */
+        .market-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .price-box { background: var(--surface); border: 1px solid var(--border); padding: 15px; border-radius: 12px; }
+        .price-box label { font-size: 0.65rem; color: var(--text-dim); display: block; margin-bottom: 5px; }
+        .price-box span { font-size: 1rem; font-weight: 700; color: #fff; }
+
+        /* Footer */
+        footer { 
+            flex-shrink: 0; 
+            padding: 15px; 
+            text-align: center; 
+            font-size: 0.7rem; 
+            color: var(--text-dim); 
+            border-top: 1px solid var(--border);
+            background: var(--bg);
+        }
+
     </style>
 </head>
 <body>
-    <header>
-        <h1>NELS1-RADAR v12.0</h1>
-        <div class="ticker">
-            <div class="track">
-                <span class="asset">BTC $80,340 ▲</span><span class="asset">BBAS3 R$ 26.45 ▼</span>
-                <span class="asset">SBSP3 R$ 82.10 ▲</span><span class="asset">SOL $174.50 ▲</span>
-                <span class="asset">BTC $80,340 ▲</span><span class="asset">BBAS3 R$ 26.45 ▼</span>
-            </div>
+
+<header>
+    <h1>Nels1Radar</h1>
+    <div class="ticker">
+        <div class="track">
+            <span class="asset">STRATEGY INC: 818,869 BTC ▲</span>
+            <span class="asset">METAPLANET: 40,177 BTC ▲</span>
+            <span class="asset">21 CAPITAL: 43,514 BTC ▲</span>
+            <span class="asset">MARA HOLDINGS: 35,303 BTC ▲</span>
+            <!-- Loop -->
+            <span class="asset">STRATEGY INC: 818,869 BTC ▲</span>
+            <span class="asset">METAPLANET: 40,177 BTC ▲</span>
         </div>
-    </header>
-    <main>
-        <div id="b3" class="tab active">
-            <div class="card">
-                <iframe src="https://br.tradingview.com/widgetembed/?symbol=BMFBOVESPA%3AIBOV&interval=D&theme=dark" width="100%" height="100%" frameborder="0"></iframe>
-            </div>
+    </div>
+</header>
+
+<main>
+    <!-- CRIPTOS ATUALIZADAS -->
+    <div>
+        <h2 class="section-title">Cripto Mercado (Real-Time)</h2>
+        <div class="market-grid">
+            <div class="price-box"><label>BITCOIN (BTC)</label><span>$80,340.50</span></div>
+            <div class="price-box"><label>ETHEREUM (ETH)</label><span>$4,120.15</span></div>
+            <div class="price-box"><label>SOLANA (SOL)</label><span>$174.45</span></div>
+            <div class="price-box"><label>USDC</label><span>$1.00</span></div>
         </div>
-        <div id="cry" class="tab">
-            <div class="card" style="flex: 0.65;">
-                <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=4&pref_coin_id=1505" width="100%" height="100%" frameborder="0"></iframe>
-            </div>
-            <div class="grid">
-                <div class="box"><label>STRATEGY INC</label><b>818,869 BTC</b><span>TREASURY #1</span></div>
-                <div class="box"><label>METAPLANET</label><b>40,177 BTC</b><span>ASIA #1</span></div>
-                <div class="box" style="border-left-color:var(--prim)"><label>21 CAPITAL</label><b>43,514 BTC</b><span>ETF FLOW</span></div>
-                <div class="box" style="border-left-color:#fff"><label>MARA HOLDINGS</label><b>35,303 BTC</b><span>MINING</span></div>
-            </div>
+    </div>
+
+    <!-- B3 RADAR -->
+    <div style="flex-grow: 1; min-height: 300px;">
+        <h2 class="section-title">B3 Radar - Ações</h2>
+        <div class="card" style="height: 100%;">
+            <iframe src="https://br.tradingview.com/widgetembed/?symbol=BMFBOVESPA%3AIBOV&interval=D&theme=dark" width="100%" height="100%" frameborder="0"></iframe>
         </div>
-    </main>
-    <nav>
-        <button class="btn active" onclick="sh('b3', event)"><div class="ind"></div>B3</button>
-        <button class="btn cry" onclick="sh('cry', event)"><div class="ind"></div>BTC</button>
-    </nav>
-    <script>
-        function sh(id, e) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            e.currentTarget.classList.add('active');
-            if (window.navigator.vibrate) window.navigator.vibrate(8);
-        }
-    </script>
+    </div>
+</main>
+
+<footer>
+    Nels1Radar by MaquinadoDigital - 2026 - [&lt;o&gt;]
+</footer>
+
 </body>
 </html>
