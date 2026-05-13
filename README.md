@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Nels1Radar | Dashboard Profissional</title>
+    <title>Nels1Radar v6.2 | Terminal Profissional</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -59,12 +59,12 @@
         .asset { padding: 0 20px; font-size: 0.75rem; border-right: 1px solid #1e293b; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Área de Conteúdo */
+        /* Conteúdo Principal */
         main {
             flex: 1;
             overflow-y: auto;
             padding: 15px;
-            padding-bottom: 80px; /* Espaço para a Nav inferior */
+            padding-bottom: 90px;
         }
 
         .tab-content { display: none; }
@@ -72,39 +72,38 @@
 
         @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Widgets Customizados */
         .card { 
             background: var(--surface); 
             border-radius: 12px; 
             border: 1px solid #1e293b; 
             overflow: hidden; 
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .crypto-accent { border: 2px solid var(--crypto); }
 
-        /* Grade Institucional Refinada */
+        /* Painel Institucional */
         .inst-grid { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
             gap: 1px; 
-            background: #1e293b;
+            background: var(--crypto); 
         }
         .inst-item { background: #000; padding: 12px; }
         .inst-item label { font-size: 0.55rem; color: var(--text-dim); display: block; margin-bottom: 4px; }
         .inst-item value { font-size: 0.8rem; font-weight: bold; display: block; }
-        .inst-item status { font-size: 0.6rem; color: var(--up); }
+        .inst-item status { font-size: 0.6rem; color: var(--up); font-weight: bold; }
 
-        /* Navegação Inferior (App Style) */
+        /* Navegação Inferior (UX Pro) */
         nav {
             position: fixed;
             bottom: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(15px);
             display: flex;
             justify-content: space-around;
-            padding: 12px 0;
+            padding: 15px 0;
             border-top: 1px solid #1e293b;
             z-index: 1000;
         }
@@ -118,39 +117,42 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
             cursor: pointer;
+            transition: 0.2s;
         }
 
         .nav-btn.active { color: var(--primary); }
         .nav-btn.crypto-btn.active { color: var(--crypto); }
-        .nav-btn .icon { width: 20px; height: 2px; background: currentColor; border-radius: 2px; }
+        .nav-btn .icon-bar { width: 24px; height: 3px; background: currentColor; border-radius: 2px; }
 
     </style>
 </head>
 <body>
 
 <header>
-    <h1>NELS1-RADAR v6.1</h1>
+    <h1>NELS1-RADAR v6.2</h1>
     <div class="ticker-stream">
         <div class="track">
             <span class="asset"><b>BTC</b> <span style="color:var(--up)">▲</span></span>
             <span class="asset"><b>SBSP3</b> <span style="color:var(--up)">▲</span></span>
             <span class="asset"><b>BBAS3</b> <span style="color:var(--down)">▼</span></span>
             <span class="asset"><b>SOL</b> <span style="color:var(--up)">▲</span></span>
+            <span class="asset"><b>ETH</b> <span style="color:var(--up)">▲</span></span>
             <!-- Loop -->
             <span class="asset"><b>BTC</b> <span style="color:var(--up)">▲</span></span>
             <span class="asset"><b>SBSP3</b> <span style="color:var(--up)">▲</span></span>
             <span class="asset"><b>BBAS3</b> <span style="color:var(--down)">▼</span></span>
             <span class="asset"><b>SOL</b> <span style="color:var(--up)">▲</span></span>
+            <span class="asset"><b>ETH</b> <span style="color:var(--up)">▲</span></span>
         </div>
     </div>
 </header>
 
 <main>
-    <!-- Aba B3 -->
+    <!-- Aba B3: Foco em Ações -->
     <div id="b3" class="tab-content active">
-        <div class="card" style="height: 500px;">
+        <div class="card" style="height: 520px;">
             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
             {
               "width": "100%", "height": "100%", "defaultColumn": "overview",
@@ -161,27 +163,27 @@
         </div>
     </div>
 
-    <!-- Aba Crypto -->
+    <!-- Aba Crypto: Preços e Institucionais (DADOS ATUALIZADOS MAIO/26) -->
     <div id="crypto" class="tab-content">
         <div class="card crypto-accent">
-            <div style="height: 350px;">
-                <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=6&pref_coin_id=1505" width="100%" height="350px" frameborder="0" style="border:0;"></iframe>
+            <div style="height: 340px;">
+                <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=5&pref_coin_id=1505" width="100%" height="340px" frameborder="0" style="border:0;"></iframe>
             </div>
             <div class="inst-grid">
                 <div class="inst-item">
                     <label>🇺🇸 MICROSTRATEGY</label>
-                    <value>214,400 BTC</value>
-                    <status>STRATEGIC RESERVE</status>
+                    <value>226,331 BTC</value>
+                    <status>HODL RESERVE</status>
                 </div>
                 <div class="inst-item">
                     <label>🇯🇵 METAPLANET</label>
-                    <value>117.7 BTC</value>
+                    <value>141.07 BTC</value>
                     <status>YEN HEDGE</status>
                 </div>
                 <div class="inst-item">
                     <label>🇧🇷 HASH11 (B3)</label>
-                    <value>ETF LEADER</value>
-                    <status>LOCAL ACCESS</status>
+                    <value>LÍDER ETF</value>
+                    <status>LOCAL HUB</status>
                 </div>
                 <div class="inst-item">
                     <label>🇨🇳 HARVEST (HK)</label>
@@ -190,16 +192,19 @@
                 </div>
             </div>
         </div>
+        <div style="font-size: 0.6rem; color: var(--text-dim); text-align: center; padding: 10px; border: 1px dashed #334155; border-radius: 8px;">
+            DADOS INSTITUCIONAIS ATUALIZADOS: MAIO 2026
+        </div>
     </div>
 </main>
 
 <nav>
     <button class="nav-btn active" onclick="switchTab(event, 'b3')">
-        <div class="icon"></div>
+        <div class="icon-bar"></div>
         B3 STOCKS
     </button>
     <button class="nav-btn crypto-btn" onclick="switchTab(event, 'crypto')">
-        <div class="icon"></div>
+        <div class="icon-bar"></div>
         CRYPTO INST
     </button>
 </nav>
@@ -215,8 +220,7 @@
         document.getElementById(tabId).classList.add('active');
         evt.currentTarget.classList.add('active');
         
-        // Haptic Feedback simulado (opcional para mobile)
-        if (window.navigator.vibrate) { window.navigator.vibrate(10); }
+        if (window.navigator.vibrate) { window.navigator.vibrate(12); }
     }
 </script>
 
