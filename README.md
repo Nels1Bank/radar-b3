@@ -1,8 +1,8 @@
-
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Nels1Radar v9.0 | Official Treasuries</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -13,6 +13,8 @@
             --crypto: #f59e0b;
             --up: #10b981;
             --border: #30363d;
+            --header-h: 65px;
+            --nav-h: 60px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,56 +29,56 @@
             overflow: hidden;
         }
 
-        /* Header Compacto */
-        header { flex-shrink: 0; border-bottom: 1px solid var(--border); padding: 4px 0; background: #000; }
+        /* Header e Ticker Profissional */
+        header { flex-shrink: 0; border-bottom: 1px solid var(--border); background: #000; padding: 5px 0; }
         h1 { font-family: 'Orbitron', sans-serif; font-size: 0.7rem; text-align: center; color: var(--primary); letter-spacing: 1px; }
 
-        .ticker { overflow: hidden; white-space: nowrap; background: #000; padding: 3px 0; font-size: 0.6rem; border-top: 1px solid #111; }
-        .track { display: inline-block; animation: scroll 18s linear infinite; }
-        .asset { padding: 0 12px; border-right: 1px solid var(--border); }
+        .ticker { overflow: hidden; white-space: nowrap; background: #000; padding: 4px 0; font-size: 0.6rem; }
+        .track { display: inline-block; animation: scroll 20s linear infinite; }
+        .asset { padding: 0 15px; border-right: 1px solid var(--border); font-weight: bold; }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        /* Main com ajuste automático para Smartphone */
+        /* Container Principal */
         main { flex-grow: 1; position: relative; overflow: hidden; width: 100%; }
         .tab-content { 
             display: none; height: 100%; width: 100%; 
-            padding: 6px; flex-direction: column;
+            padding: 8px; flex-direction: column; gap: 8px;
         }
         .tab-content.active { display: flex; }
 
         .card { 
             flex: 1; background: var(--surface); 
             border: 1px solid var(--border); 
-            border-radius: 6px; overflow: hidden; 
-            position: relative;
+            border-radius: 8px; overflow: hidden; 
         }
 
-        /* Painel Institucional - DADOS OFICIAIS MAIO 2026 */
+        /* Grid Institucional - Dados Atualizados Maio 2026 */
         .inst-panel {
             display: grid; grid-template-columns: 1fr 1fr;
-            gap: 4px; margin-top: 6px; flex-shrink: 0;
+            gap: 6px; flex-shrink: 0; padding-bottom: 5px;
         }
         .inst-box {
             background: #161b22; border: 1px solid var(--border);
-            padding: 8px; border-radius: 4px; border-left: 3px solid var(--crypto);
+            padding: 10px; border-radius: 6px; border-left: 4px solid var(--crypto);
         }
-        .inst-box label { font-size: 0.5rem; color: #8b949e; display: block; }
-        .inst-box span { font-size: 0.7rem; font-weight: bold; color: #fff; display: block; margin: 2px 0; }
+        .inst-box label { font-size: 0.55rem; color: #8b949e; display: block; margin-bottom: 3px; }
+        .inst-box span { font-size: 0.75rem; font-weight: bold; color: #fff; display: block; }
         .inst-box small { font-size: 0.5rem; color: var(--up); font-weight: bold; }
 
-        /* Navegação Inferior Profissional */
+        /* Navegação Mobile */
         nav {
-            display: flex; height: 55px; background: #010409;
-            border-top: 1px solid var(--border); padding-bottom: env(safe-area-inset-bottom);
+            flex-shrink: 0; height: var(--nav-h); display: flex; 
+            background: #010409; border-top: 1px solid var(--border);
+            padding-bottom: env(safe-area-inset-bottom);
         }
         .nav-item {
             flex: 1; border: none; background: none; color: #484f58;
-            font-family: 'Orbitron', sans-serif; font-size: 0.6rem;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+            font-family: 'Orbitron', sans-serif; font-size: 0.65rem;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
         }
         .nav-item.active { color: var(--primary); }
         .nav-item.crypto-active.active { color: var(--crypto); }
-        .indicator { width: 12px; height: 2px; background: currentColor; border-radius: 1px; }
+        .indicator { width: 15px; height: 2px; background: currentColor; border-radius: 2px; }
 
     </style>
 </head>
@@ -86,14 +88,15 @@
     <h1>NELS1-RADAR v9.0</h1>
     <div class="ticker">
         <div class="track">
-            <span class="asset">BTC/USD $80,340 ▲</span>
-            <span class="asset">BBAS3 R$ 26.45 ▼</span>
-            <span class="asset">SBSP3 R$ 82.10 ▲</span>
-            <span class="asset">SOL/USD $174.50 ▲</span>
-            <span class="asset">BTC/USD $80,340 ▲</span>
-            <span class="asset">BBAS3 R$ 26.45 ▼</span>
-            <span class="asset">SBSP3 R$ 82.10 ▲</span>
-            <span class="asset">SOL/USD $174.50 ▲</span>
+            <span class="asset">BTC $80,340 <span style="color:var(--up)">▲</span></span>
+            <span class="asset">BBAS3 R$ 26.45 <span style="color:red">▼</span></span>
+            <span class="asset">SBSP3 R$ 82.10 <span style="color:var(--up)">▲</span></span>
+            <span class="asset">SOL $174.50 <span style="color:var(--up)">▲</span></span>
+            <!-- Duplicação para loop -->
+            <span class="asset">BTC $80,340 <span style="color:var(--up)">▲</span></span>
+            <span class="asset">BBAS3 R$ 26.45 <span style="color:red">▼</span></span>
+            <span class="asset">SBSP3 R$ 82.10 <span style="color:var(--up)">▲</span></span>
+            <span class="asset">SOL $174.50 <span style="color:var(--up)">▲</span></span>
         </div>
     </div>
 </header>
@@ -119,17 +122,17 @@
             <div class="inst-box">
                 <label>🇯🇵 METAPLANET (3350)</label>
                 <span>40,177 BTC</span>
-                <small>ASIA'S 1st TREASURY</small>
+                <small>JAPAN TREASURY</small>
             </div>
             <div class="inst-box" style="border-left-color: var(--primary);">
                 <label>🇧🇷 HASH11 (B3)</label>
                 <span>5,440 BTC</span>
-                <small>NASDAQ INDEX FLOW</small>
+                <small>NASDAQ INDEX</small>
             </div>
             <div class="inst-box" style="border-left-color: #fff;">
                 <label>🇨🇳 CHINAAMC (HK)</label>
                 <span>2,603 BTC</span>
-                <small>SPOT ETF HONG KONG</small>
+                <small>SPOT ETF HK</small>
             </div>
         </div>
     </div>
@@ -140,7 +143,7 @@
         <div class="indicator"></div> B3 RADAR
     </button>
     <button class="nav-item crypto-active" onclick="tabs(event, 'crypto')">
-        <div class="indicator"></div> BITCOIN TREASURIES
+        <div class="indicator"></div> BTC TREASURIES
     </button>
 </nav>
 
@@ -150,7 +153,8 @@
         document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
         document.getElementById(id).classList.add('active');
         e.currentTarget.classList.add('active');
-        if (window.navigator.vibrate) window.navigator.vibrate(10);
+        // Feedback tátil para mobile
+        if (window.navigator.vibrate) window.navigator.vibrate(12);
     }
 </script>
 
