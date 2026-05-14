@@ -2,117 +2,64 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nels1Radar | Terminal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Nels1Radar</title>
     <style>
-        /* Reset e Base */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        :root { 
-            --bg: #050505; 
-            --card-bg: #0f0f0f; 
-            --accent: #00e5ff; 
-            --border: #1a1a1a; 
-            --text: #e0e0e0;
+        body { background: #000; color: #fff; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        
+        .header { text-align: center; margin-bottom: 30px; width: 100%; border-bottom: 1px solid #1a1a1a; padding-bottom: 15px; }
+        .header h1 { font-size: 1.2rem; color: #00e5ff; letter-spacing: 2px; }
+
+        /* Grid Blindado */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px; 
+            width: 100%; 
+            max-width: 500px; 
         }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.5;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow-x: hidden;
+        .card { 
+            background: #0a0a0a; 
+            border: 1px solid #222; 
+            border-radius: 8px; 
+            padding: 20px; 
+            text-align: center; 
         }
 
-        /* Header Estilizado */
-        header {
-            padding: 20px;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-            background: linear-gradient(to bottom, #0a0a0a, var(--bg));
-        }
-
-        h1 {
-            font-size: 1.4rem;
-            letter-spacing: 4px;
-            color: var(--accent);
-            text-transform: uppercase;
-        }
-
-        /* Grid de Ativos - Ajuste Supremo de Layout */
-        .dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
-            padding: 15px;
-            width: 100%;
-            max-width: 1000px;
-            align-self: center;
-        }
-
-        .ticker-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 25px 10px;
-            border-radius: 6px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
-
-        /* Ticker Isolado - Regra: Nada ao lado */
-        .ticker-name {
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: 700;
-            font-size: 1.1rem;
+        /* Regra: Nada ao lado */
+        .ticker { 
+            display: block; 
+            font-weight: bold; 
+            font-size: 1.1rem; 
             color: #fff;
-            display: block;
-            width: 100%;
+            margin-bottom: 5px;
         }
 
-        /* Footer */
-        footer {
-            margin-top: auto;
-            padding: 15px;
-            text-align: center;
-            font-size: 0.7rem;
-            color: #444;
-            border-top: 1px solid var(--border);
-        }
-
-        /* Ajuste para telas pequenas */
-        @media (max-width: 480px) {
-            .dashboard {
-                grid-template-columns: 1fr 1fr; /* Força duas colunas no celular */
-                padding: 10px;
-            }
-            h1 { font-size: 1.1rem; }
-        }
+        .price { color: #00ff88; font-size: 0.9rem; display: block; }
+        
+        footer { margin-top: 40px; font-size: 0.7rem; color: #444; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Nels1Bank Radar</h1>
-    </header>
+    <div class="header"><h1>Nels1Bank Radar</h1></div>
 
-    <main class="dashboard">
-        <div class="ticker-card"><span class="ticker-name">BBAS3</span></div>
-        <div class="ticker-card"><span class="ticker-name">ITUB4</span></div>
-        <div class="ticker-card"><span class="ticker-name">PETR4</span></div>
-        <div class="ticker-card"><span class="ticker-name">AURE3</span></div>
-        <div class="ticker-card"><span class="ticker-name">BPAC3</span></div>
-        <div class="ticker-card"><span class="ticker-name">CSNA3</span></div>
-    </main>
+    <div class="grid">
+        <div class="card"><span class="ticker">BBAS3</span><span class="price">R$ 27,45</span></div>
+        <div class="card"><span class="ticker">ITUB4</span><span class="price">R$ 32,10</span></div>
+        <div class="card"><span class="ticker">PETR4</span><span class="price">R$ 41,20</span></div>
+        <div class="card"><span class="ticker">AURE3</span><span class="price">R$ 11,85</span></div>
+        <div class="card"><span class="ticker">BPAC3</span><span class="price">R$ 14,90</span></div>
+        <div class="card"><span class="ticker">CSNA3</span><span class="price">R$ 6,55</span></div>
+        <div class="card" style="grid-column: span 2; border-color: #f59e0b;">
+            <span class="ticker">SOLANA (SOL)</span>
+            <span class="price" style="color: #f59e0b;">R$ 457,83</span>
+        </div>
+    </div>
 
-    <footer>
-        SISTEMA DE MONITORAMENTO DE ATIVOS V26.0
-    </footer>
+    <footer>Sincronizado com fechamento de 13/05/2026</footer>
 
 </body>
 </html>
